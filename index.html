@@ -63,493 +63,464 @@
     rel="stylesheet"
   >
 
-  <!-- Styles -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="bg-gradient"></div>
+<div class="bg-gradient"></div>
 
-  <div class="container">
+<div class="container">
 
-    <!-- SEO Introduction -->
-    <section class="seo-intro" aria-labelledby="seo-title">
+  <!-- Header -->
+  <header>
 
-      <h2 id="seo-title">
-        تبدیل متن به فایل آنلاین و رایگان
-      </h2>
+    <div class="logo">
 
-      <p>
-        با <strong>Text to File</strong> می‌توانید متن خود را به‌سادگی
-        به فایل‌های TXT، PDF، Word، HTML، Markdown و CSV تبدیل کنید.
-        متن را وارد کنید، ویرایش کنید و فایل نهایی را دانلود کنید.
-      </p>
-
-      <p>
-        این ابزار برای نوشتن، ویرایش و تبدیل سریع متن در موبایل و کامپیوتر
-        طراحی شده و از زبان فارسی و متن‌های راست‌به‌چپ پشتیبانی می‌کند.
-      </p>
-
-    </section>
-
-    <!-- Header -->
-    <header>
-
-      <div class="logo">
-
-        <div class="logo-icon" aria-hidden="true">
-          📄
-        </div>
-
-        <div>
-
-          <h1>
-            متن به فایل
-            <span class="version-badge">v2</span>
-          </h1>
-
-          <p>
-            ۶ فرمت خروجی + امکانات حرفه‌ای
-          </p>
-
-        </div>
-
+      <div class="logo-icon" aria-hidden="true">
+        📄
       </div>
 
-      <div class="header-actions">
+      <div>
+        <h1>
+          متن به فایل
+          <span class="version-badge">v2</span>
+        </h1>
 
-        <button
-          class="icon-btn"
-          onclick="openUpload()"
-          title="آپلود فایل"
-          aria-label="آپلود فایل"
-          type="button"
-        >
-          📁
-        </button>
-
-        <button
-          class="icon-btn"
-          onclick="openEncrypt()"
-          title="رمزگذاری"
-          aria-label="رمزگذاری متن"
-          type="button"
-        >
-          🔐
-        </button>
-
-        <button
-          class="icon-btn"
-          onclick="openQR()"
-          title="اشتراک QR"
-          aria-label="اشتراک با QR"
-          type="button"
-        >
-          📱
-        </button>
-
-        <button
-          class="icon-btn"
-          onclick="toggleTheme()"
-          id="themeBtn"
-          title="حالت شب"
-          aria-label="تغییر حالت شب و روز"
-          type="button"
-        >
-          🌙
-        </button>
-
+        <p>
+          ۶ فرمت خروجی + امکانات حرفه‌ای
+        </p>
       </div>
-
-    </header>
-
-    <!-- Tabs -->
-    <div
-      class="tabs"
-      id="tabs"
-      role="tablist"
-      aria-label="اسناد"
-    ></div>
-
-    <!-- Main Application -->
-    <main class="main-grid">
-
-      <!-- Editor -->
-      <section
-        class="editor-card"
-        aria-labelledby="editor-title"
-      >
-
-        <div class="editor-header">
-
-          <div class="editor-title">
-
-            <span
-              style="font-size:1.3rem"
-              aria-hidden="true"
-            >
-              ✍️
-            </span>
-
-            <input
-              type="text"
-              id="fileName"
-              value="سند جدید"
-              onchange="renameTab()"
-              placeholder="نام فایل..."
-              aria-label="نام فایل"
-            >
-
-          </div>
-
-          <div class="editor-actions">
-
-            <button
-              class="mini-btn"
-              onclick="copyText()"
-              title="کپی متن"
-              aria-label="کپی متن"
-              type="button"
-            >
-              📋
-              <span>کپی</span>
-            </button>
-
-            <button
-              class="mini-btn success"
-              onclick="speakText()"
-              title="پخش متن"
-              aria-label="پخش متن"
-              type="button"
-            >
-              🔊
-              <span>پخش</span>
-            </button>
-
-            <button
-              class="mini-btn danger"
-              onclick="clearText()"
-              title="پاک کردن متن"
-              aria-label="پاک کردن متن"
-              type="button"
-            >
-              🗑️
-              <span>پاک</span>
-            </button>
-
-          </div>
-
-        </div>
-
-        <textarea
-          id="textInput"
-          class="editor-textarea"
-          placeholder="هر چقدر متن می‌خوای اینجا بنویس یا پیست کن..."
-          aria-label="متن خود را وارد کنید"
-          spellcheck="true"
-        ></textarea>
-
-        <!-- Statistics -->
-        <div
-          class="stats-bar"
-          aria-label="آمار متن"
-        >
-
-          <div class="stat-item">
-            <span
-              class="stat-value"
-              id="statChars"
-            >0</span>
-
-            <span class="stat-label">
-              کاراکتر
-            </span>
-          </div>
-
-          <div class="stat-item">
-            <span
-              class="stat-value"
-              id="statCharsNS"
-            >0</span>
-
-            <span class="stat-label">
-              بدون فاصله
-            </span>
-          </div>
-
-          <div class="stat-item">
-            <span
-              class="stat-value"
-              id="statWords"
-            >0</span>
-
-            <span class="stat-label">
-              کلمه
-            </span>
-          </div>
-
-          <div class="stat-item">
-            <span
-              class="stat-value"
-              id="statSentences"
-            >0</span>
-
-            <span class="stat-label">
-              جمله
-            </span>
-          </div>
-
-          <div class="stat-item">
-            <span
-              class="stat-value"
-              id="statLines"
-            >0</span>
-
-            <span class="stat-label">
-              خط
-            </span>
-          </div>
-
-          <div class="stat-item">
-            <span
-              class="stat-value"
-              id="statParagraphs"
-            >0</span>
-
-            <span class="stat-label">
-              پاراگراف
-            </span>
-          </div>
-
-          <div class="stat-item">
-            <span
-              class="stat-value"
-              id="statRead"
-            >0</span>
-
-            <span class="stat-label">
-              دقیقه مطالعه
-            </span>
-          </div>
-
-          <div class="stat-item">
-            <span
-              class="stat-value"
-              id="statSize"
-            >0 B</span>
-
-            <span class="stat-label">
-              حجم
-            </span>
-          </div>
-
-        </div>
-
-      </section>
-
-      <!-- Sidebar -->
-      <aside class="sidebar">
-
-        <!-- Formats -->
-        <div class="side-card">
-
-          <h3>
-            💾 فرمت خروجی
-          </h3>
-
-          <div class="format-grid">
-
-            <button
-              class="format-btn active"
-              data-format="txt"
-              onclick="selectFormat('txt', this)"
-              type="button"
-            >
-              <span class="icon" aria-hidden="true">📄</span>
-              <span class="name">TXT</span>
-            </button>
-
-            <button
-              class="format-btn"
-              data-format="pdf"
-              onclick="selectFormat('pdf', this)"
-              type="button"
-            >
-              <span class="icon" aria-hidden="true">📕</span>
-              <span class="name">PDF</span>
-            </button>
-
-            <button
-              class="format-btn"
-              data-format="doc"
-              onclick="selectFormat('doc', this)"
-              type="button"
-            >
-              <span class="icon" aria-hidden="true">📘</span>
-              <span class="name">Word</span>
-            </button>
-
-            <button
-              class="format-btn"
-              data-format="html"
-              onclick="selectFormat('html', this)"
-              type="button"
-            >
-              <span class="icon" aria-hidden="true">🌐</span>
-              <span class="name">HTML</span>
-            </button>
-
-            <button
-              class="format-btn"
-              data-format="md"
-              onclick="selectFormat('md', this)"
-              type="button"
-            >
-              <span class="icon" aria-hidden="true">📝</span>
-              <span class="name">MD</span>
-            </button>
-
-            <button
-              class="format-btn"
-              data-format="csv"
-              onclick="selectFormat('csv', this)"
-              type="button"
-            >
-              <span class="icon" aria-hidden="true">📊</span>
-              <span class="name">CSV</span>
-            </button>
-
-          </div>
-
-        </div>
-
-        <!-- Download -->
-        <div class="side-card">
-
-          <h3>
-            ⬇️ ذخیره و دانلود
-          </h3>
-
-          <button
-            class="btn success"
-            onclick="download()"
-            type="button"
-          >
-            💾 دانلود فایل
-          </button>
-
-          <button
-            class="btn ghost"
-            onclick="previewFile()"
-            type="button"
-          >
-            👁️ پیش‌نمایش
-          </button>
-
-        </div>
-
-        <!-- Text Tools -->
-        <div class="side-card">
-
-          <h3>
-            🛠️ ابزارهای متن
-          </h3>
-
-          <div class="btn-row">
-
-            <button
-              class="mini-btn"
-              onclick="cleanText()"
-              style="justify-content:center;padding:10px"
-              type="button"
-            >
-              ✨ پاک‌سازی
-            </button>
-
-            <button
-              class="mini-btn"
-              onclick="reverseText()"
-              style="justify-content:center;padding:10px"
-              type="button"
-            >
-              🔄 معکوس
-            </button>
-
-            <button
-              class="mini-btn"
-              onclick="biggerText()"
-              style="justify-content:center;padding:10px"
-              type="button"
-            >
-              🔠 بزرگ
-            </button>
-
-            <button
-              class="mini-btn"
-              onclick="smallerText()"
-              style="justify-content:center;padding:10px"
-              type="button"
-            >
-              🔡 کوچک
-            </button>
-
-          </div>
-
-        </div>
-
-      </aside>
-
-    </main>
-
-  </div>
-
-  <!-- Footer -->
-  <footer class="app-footer">
-    ساخته شده توسط
-    <strong>SAYED YASIR</strong>
-  </footer>
-
-  <!-- Modal -->
-  <div
-    class="modal"
-    id="modal"
-    role="dialog"
-    aria-modal="true"
-    aria-label="پنجره ابزار"
-  >
-
-    <div class="modal-content">
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-        title="بستن"
-        aria-label="بستن پنجره"
-        type="button"
-      >
-        ✕
-      </button>
-
-      <div id="modalBody"></div>
 
     </div>
 
-  </div>
+    <div class="header-actions">
 
-  <!-- Toast -->
+      <button
+        class="icon-btn"
+        onclick="openUpload()"
+        title="آپلود فایل"
+        aria-label="آپلود فایل"
+        type="button"
+      >
+        📁
+      </button>
+
+      <button
+        class="icon-btn"
+        onclick="openEncrypt()"
+        title="رمزگذاری"
+        aria-label="رمزگذاری"
+        type="button"
+      >
+        🔐
+      </button>
+
+      <button
+        class="icon-btn"
+        onclick="openQR()"
+        title="اشتراک QR"
+        aria-label="اشتراک QR"
+        type="button"
+      >
+        📱
+      </button>
+
+      <button
+        class="icon-btn"
+        onclick="toggleTheme()"
+        id="themeBtn"
+        title="حالت شب"
+        aria-label="تغییر حالت شب و روز"
+        type="button"
+      >
+        🌙
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- Tabs -->
   <div
-    class="toast"
-    id="toast"
-    role="status"
-    aria-live="polite"
+    class="tabs"
+    id="tabs"
+    role="tablist"
+    aria-label="اسناد"
   ></div>
 
-  <!-- JavaScript -->
-  <script
-    src="script.js"
-    defer
-  ></script>
+  <!-- Main App -->
+  <main class="main-grid">
+
+    <!-- Editor -->
+    <section class="editor-card">
+
+      <div class="editor-header">
+
+        <div class="editor-title">
+
+          <span
+            style="font-size:1.3rem"
+            aria-hidden="true"
+          >
+            ✍️
+          </span>
+
+          <input
+            type="text"
+            id="fileName"
+            value="سند جدید"
+            onchange="renameTab()"
+            placeholder="نام فایل..."
+            aria-label="نام فایل"
+          >
+
+        </div>
+
+        <div class="editor-actions">
+
+          <button
+            class="mini-btn"
+            onclick="copyText()"
+            title="کپی"
+            aria-label="کپی متن"
+            type="button"
+          >
+            📋 <span>کپی</span>
+          </button>
+
+          <button
+            class="mini-btn success"
+            onclick="speakText()"
+            title="پخش"
+            aria-label="پخش متن"
+            type="button"
+          >
+            🔊 <span>پخش</span>
+          </button>
+
+          <button
+            class="mini-btn danger"
+            onclick="clearText()"
+            title="پاک"
+            aria-label="پاک کردن متن"
+            type="button"
+          >
+            🗑️ <span>پاک</span>
+          </button>
+
+        </div>
+
+      </div>
+
+      <textarea
+        id="textInput"
+        class="editor-textarea"
+        placeholder="هر چقدر متن می‌خوای اینجا بنویس یا پیست کن..."
+        aria-label="متن خود را وارد کنید"
+        spellcheck="true"
+      ></textarea>
+
+      <!-- Statistics -->
+      <div class="stats-bar">
+
+        <div class="stat-item">
+          <span class="stat-value" id="statChars">0</span>
+          <span class="stat-label">کاراکتر</span>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-value" id="statCharsNS">0</span>
+          <span class="stat-label">بدون فاصله</span>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-value" id="statWords">0</span>
+          <span class="stat-label">کلمه</span>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-value" id="statSentences">0</span>
+          <span class="stat-label">جمله</span>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-value" id="statLines">0</span>
+          <span class="stat-label">خط</span>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-value" id="statParagraphs">0</span>
+          <span class="stat-label">پاراگراف</span>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-value" id="statRead">0</span>
+          <span class="stat-label">دقیقه مطالعه</span>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-value" id="statSize">0 B</span>
+          <span class="stat-label">حجم</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Output Formats -->
+      <div class="side-card">
+
+        <h3>💾 فرمت خروجی</h3>
+
+        <div class="format-grid">
+
+          <div
+            class="format-btn active"
+            data-format="txt"
+            onclick="selectFormat('txt', this)"
+            role="button"
+            tabindex="0"
+          >
+            <span class="icon">📄</span>
+            <span class="name">TXT</span>
+          </div>
+
+          <div
+            class="format-btn"
+            data-format="pdf"
+            onclick="selectFormat('pdf', this)"
+            role="button"
+            tabindex="0"
+          >
+            <span class="icon">📕</span>
+            <span class="name">PDF</span>
+          </div>
+
+          <div
+            class="format-btn"
+            data-format="doc"
+            onclick="selectFormat('doc', this)"
+            role="button"
+            tabindex="0"
+          >
+            <span class="icon">📘</span>
+            <span class="name">Word</span>
+          </div>
+
+          <div
+            class="format-btn"
+            data-format="html"
+            onclick="selectFormat('html', this)"
+            role="button"
+            tabindex="0"
+          >
+            <span class="icon">🌐</span>
+            <span class="name">HTML</span>
+          </div>
+
+          <div
+            class="format-btn"
+            data-format="md"
+            onclick="selectFormat('md', this)"
+            role="button"
+            tabindex="0"
+          >
+            <span class="icon">📝</span>
+            <span class="name">MD</span>
+          </div>
+
+          <div
+            class="format-btn"
+            data-format="csv"
+            onclick="selectFormat('csv', this)"
+            role="button"
+            tabindex="0"
+          >
+            <span class="icon">📊</span>
+            <span class="name">CSV</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Save and Download -->
+      <div class="side-card">
+
+        <h3>⬇️ ذخیره و دانلود</h3>
+
+        <button
+          class="btn success"
+          onclick="download()"
+          type="button"
+        >
+          💾 دانلود فایل
+        </button>
+
+        <button
+          class="btn ghost"
+          onclick="previewFile()"
+          type="button"
+        >
+          👁️ پیش‌نمایش
+        </button>
+
+      </div>
+
+      <!-- Text Tools -->
+      <div class="side-card">
+
+        <h3>🛠️ ابزارهای متن</h3>
+
+        <div class="btn-row">
+
+          <button
+            class="mini-btn"
+            onclick="cleanText()"
+            style="justify-content:center;padding:10px"
+            type="button"
+          >
+            ✨ پاک‌سازی
+          </button>
+
+          <button
+            class="mini-btn"
+            onclick="reverseText()"
+            style="justify-content:center;padding:10px"
+            type="button"
+          >
+            🔄 معکوس
+          </button>
+
+          <button
+            class="mini-btn"
+            onclick="biggerText()"
+            style="justify-content:center;padding:10px"
+            type="button"
+          >
+            🔠 بزرگ
+          </button>
+
+          <button
+            class="mini-btn"
+            onclick="smallerText()"
+            style="justify-content:center;padding:10px"
+            type="button"
+          >
+            🔡 کوچک
+          </button>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- SEO Content -->
+  <section
+    class="seo-content"
+    aria-labelledby="seo-heading"
+    style="
+      margin-top:24px;
+      padding:24px;
+      border-radius:20px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      line-height:2;
+    "
+  >
+
+    <h2
+      id="seo-heading"
+      style="margin-top:0;"
+    >
+      تبدیل متن به فایل آنلاین و رایگان
+    </h2>
+
+    <p>
+      <strong>Text to File</strong>
+      یک ابزار آنلاین رایگان برای تبدیل متن به فایل‌های مختلف است.
+      متن خود را وارد کنید، آن را ویرایش کنید و در فرمت موردنظر خود
+      ذخیره و دانلود کنید.
+    </p>
+
+    <p>
+      با این ابزار می‌توانید متن را به
+      <strong>TXT، PDF، Word، HTML، Markdown و CSV</strong>
+      تبدیل کنید. این ابزار برای استفاده در موبایل، تبلت و کامپیوتر
+      طراحی شده و از متن فارسی و راست‌به‌چپ نیز پشتیبانی می‌کند.
+    </p>
+
+    <h3>چه فایل‌هایی می‌توان با Text to File ساخت؟</h3>
+
+    <p>
+      می‌توانید متن خود را به فایل‌های
+      TXT، PDF، Word، HTML، Markdown و CSV
+      تبدیل کرده و فایل ایجادشده را دانلود کنید.
+    </p>
+
+    <h3>Text to File برای چه کاری مناسب است؟</h3>
+
+    <p>
+      برای ذخیره یادداشت‌ها، تبدیل متن، آماده‌سازی اسناد،
+      ذخیره اطلاعات متنی و تبدیل سریع نوشته‌ها به فرمت‌های مختلف
+      می‌توانید از Text to File استفاده کنید.
+    </p>
+
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer class="app-footer">
+  ساخته شده توسط
+  <strong>SAYED YASIR</strong>
+</footer>
+
+<!-- Modal -->
+<div
+  class="modal"
+  id="modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="پنجره ابزار"
+>
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal()"
+      title="بستن"
+      aria-label="بستن"
+      type="button"
+    >
+      ✕
+    </button>
+
+    <div id="modalBody"></div>
+
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div
+  class="toast"
+  id="toast"
+  role="status"
+  aria-live="polite"
+></div>
+
+<!-- JavaScript -->
+<script src="script.js" defer></script>
 
 </body>
 </html>
