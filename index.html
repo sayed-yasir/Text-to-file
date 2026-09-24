@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://api.qrserver.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; base-uri 'self'; form-action 'self';">
+<title>متن به فایل</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+
+<div class="container">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">📄</div>
+      <div>
+        <h1>متن به فایل <span class="version-badge">v2</span></h1>
+        <p>۶ فرمت خروجی + امکانات حرفه‌ای</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="openUpload()" title="آپلود فایل">📁</button>
+      <button class="icon-btn" onclick="openEncrypt()" title="رمزگذاری">🔐</button>
+      <button class="icon-btn" onclick="openQR()" title="اشتراک QR">📱</button>
+      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="حالت شب">🌙</button>
+    </div>
+  </header>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="main-grid">
+    <div class="editor-card">
+      <div class="editor-header">
+        <div class="editor-title">
+          <span style="font-size:1.3rem">✍️</span>
+          <input type="text" id="fileName" value="سند جدید" onchange="renameTab()" placeholder="نام فایل...">
+        </div>
+        <div class="editor-actions">
+          <button class="mini-btn" onclick="copyText()" title="کپی">📋 <span>کپی</span></button>
+          <button class="mini-btn success" onclick="speakText()" title="پخش">🔊 <span>پخش</span></button>
+          <button class="mini-btn danger" onclick="clearText()" title="پاک">🗑️ <span>پاک</span></button>
+        </div>
+      </div>
+
+      <textarea id="textInput" class="editor-textarea" placeholder="هر چقدر متن می‌خوای اینجا بنویس یا پیست کن..."></textarea>
+
+      <div class="stats-bar">
+        <div class="stat-item"><span class="stat-value" id="statChars">0</span><span class="stat-label">کاراکتر</span></div>
+        <div class="stat-item"><span class="stat-value" id="statCharsNS">0</span><span class="stat-label">بدون فاصله</span></div>
+        <div class="stat-item"><span class="stat-value" id="statWords">0</span><span class="stat-label">کلمه</span></div>
+        <div class="stat-item"><span class="stat-value" id="statSentences">0</span><span class="stat-label">جمله</span></div>
+        <div class="stat-item"><span class="stat-value" id="statLines">0</span><span class="stat-label">خط</span></div>
+        <div class="stat-item"><span class="stat-value" id="statParagraphs">0</span><span class="stat-label">پاراگراف</span></div>
+        <div class="stat-item"><span class="stat-value" id="statRead">0</span><span class="stat-label">دقیقه مطالعه</span></div>
+        <div class="stat-item"><span class="stat-value" id="statSize">0 B</span><span class="stat-label">حجم</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="side-card">
+        <h3>💾 فرمت خروجی</h3>
+        <div class="format-grid">
+          <div class="format-btn active" data-format="txt" onclick="selectFormat('txt', this)"><span class="icon">📄</span><span class="name">TXT</span></div>
+          <div class="format-btn" data-format="pdf" onclick="selectFormat('pdf', this)"><span class="icon">📕</span><span class="name">PDF</span></div>
+          <div class="format-btn" data-format="doc" onclick="selectFormat('doc', this)"><span class="icon">📘</span><span class="name">Word</span></div>
+          <div class="format-btn" data-format="html" onclick="selectFormat('html', this)"><span class="icon">🌐</span><span class="name">HTML</span></div>
+          <div class="format-btn" data-format="md" onclick="selectFormat('md', this)"><span class="icon">📝</span><span class="name">MD</span></div>
+          <div class="format-btn" data-format="csv" onclick="selectFormat('csv', this)"><span class="icon">📊</span><span class="name">CSV</span></div>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <h3>⬇️ ذخیره و دانلود</h3>
+        <button class="btn success" onclick="download()">💾 دانلود فایل</button>
+        <button class="btn ghost" onclick="previewFile()">👁️ پیش‌نمایش</button>
+      </div>
+
+      <div class="side-card">
+        <h3>🛠️ ابزارهای متن</h3>
+        <div class="btn-row">
+          <button class="mini-btn" onclick="cleanText()" style="justify-content:center;padding:10px">✨ پاک‌سازی</button>
+          <button class="mini-btn" onclick="reverseText()" style="justify-content:center;padding:10px">🔄 معکوس</button>
+          <button class="mini-btn" onclick="biggerText()" style="justify-content:center;padding:10px">🔠 بزرگ</button>
+          <button class="mini-btn" onclick="smallerText()" style="justify-content:center;padding:10px">🔡 کوچک</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer class="app-footer">ساخته شده توسط <strong>SAYED YASIR</strong></footer>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>
