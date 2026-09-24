@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sayed-yasir.github.io/Text-to-file/sitemap.xml
